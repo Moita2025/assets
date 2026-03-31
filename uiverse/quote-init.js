@@ -2,16 +2,15 @@ function renderSingleQuoteCard(card) {
     // 防止重复渲染
     if (card.dataset.rendered === "true") return;
 
-    const contentEl = card.querySelector('content');
-    const sourceEl = card.querySelector('source');
-    const nameEl = sourceEl?.querySelector('name');
-    const noteEl = sourceEl?.querySelector('note');
+    const contentEl = card.querySelector('.quote-content');
+    const nameEl = card.querySelector('.quote-name');
+    const titleEl = card.querySelector('.quote-title');
 
     const contentText = contentEl?.textContent.trim() || '';
     const nameText = nameEl?.textContent.trim() || '';
-    const noteText = noteEl?.textContent.trim() || '';
+    const titleText = titleEl?.textContent.trim() || '';
 
-    // 如果连内容都没有，直接跳过
+    // 如果没有内容就跳过
     if (!contentText) return;
 
     // 创建卡片
@@ -37,7 +36,7 @@ function renderSingleQuoteCard(card) {
     contentDiv.appendChild(wordsDiv);
 
     // footer 判断
-    if (nameText || noteText) {
+    if (nameText || titleText) {
         const footerDiv = document.createElement('div');
         footerDiv.className = 'footer';
 
@@ -47,11 +46,11 @@ function renderSingleQuoteCard(card) {
             footerDiv.appendChild(strongName);
         }
 
-        if (noteText) {
-            const paraNote = document.createElement('p');
-            paraNote.className = "para";
-            paraNote.textContent = noteText;
-            footerDiv.appendChild(paraNote);
+        if (titleText) {
+            const paraTitle = document.createElement('p');
+            paraTitle.className = "para";
+            paraTitle.textContent = titleText;
+            footerDiv.appendChild(paraTitle);
         }
 
         contentDiv.appendChild(footerDiv);
